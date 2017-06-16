@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
+
+<head>
     <title>Vũ Trọng Phương</title>
     <meta charset="utf-8">
     <meta name="keywords" content="LunVjp,game,web,developer,full stack web developer,front-end,back-end">
     <meta name="author" content="Vu Trong Phuong">
     <meta name="description" content="This is my profile's website about all of the knowledge I have">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
+    <!-- FontAwesome -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- LATO -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -15,21 +17,18 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!-- JQUERY -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
-    <link href="style.css" rel="stylesheet">
+    <script type="text/javascript" src="https://secure.skypeassets.com/i/scom/js/skype-uri.js"></script>
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body id="top">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-custom">
         <div class="container">
             <div class="navbar-header">
                 <!-- BUTTON HERE -->
-                <button type="button"
-                        class="navbar-toggle"
-                        data-toggle="collapse"
-                        data-target="#details">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#details">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -41,7 +40,7 @@
                     <li><a href="#mystories">My Stories</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
-                </ul>   
+                </ul>
             </div>
         </div>
     </nav>
@@ -51,19 +50,53 @@
             <div class="col-lg-12">
                 <img>
                 <div class="intro-text">
-                    <span class="name" style="font-">Trong-Phuong Vu</span>
-                    <hr class="star-light">
+                    <span class="name">Trong-Phuong Vu</span>
+                    <hr class="star-light" id="main">
                     <span class="skills">Full Stack Web Developer</span>
                 </div>
             </div>
         </div>
     </header>
 
+    <div class="show">
+        <div class="slider">
+            <div class="slide-item Fade">
+                <img src="images/html5.jpg" alt="item 1 of slide">
+                <!-- <div class="text">Caption 1</div> -->
+            </div>
+            <div class="slide-item Fade">
+                <img src="images/css3.jpg" alt="item 2 of slide">
+                <!-- <div class="text">Caption 2</div> -->
+            </div>
+            <div class="slide-item Fade">
+                <img src="images/js.jpg" alt="item 3 of slide">
+                <!-- <div class="text">Caption 3</div> -->
+            </div>
+            <div class="slide-item Fade">
+                <img src="images/bootstrap.png" alt="item 4 of slide">
+            </div>
+            <div class="slide-item Fade">
+                <img src="images/jquery.png" alt="item 5 of slide">
+            </div>
+
+            <a class="prev" onclick="ThemSlide(-1)">&#10094</a>
+            <a class="next" onclick="ThemSlide(1)">&#10095</a>
+        </div>
+        <div class="dot-list">
+            <span class="dot" onclick="SlideHienTai(1)"></span>
+            <span class="dot" onclick="SlideHienTai(2)"></span>
+            <span class="dot" onclick="SlideHienTai(3)"></span>
+            <span class="dot" onclick="SlideHienTai(4)"></span>
+            <span class="dot" onclick="SlideHienTai(5)"></span>
+        </div>
+    </div>
+    <!- ------------------------------------->
+
     <section id="mystories">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>My Stories</h2>
+                    <h1>My Stories</h1>
                 </div>
             </div>
         </div>
@@ -71,30 +104,30 @@
             <div class="col-sm-4">
                 <a href="#">
                     <div class="caption"></div>
-                    <img src="skills.png" class="img-responsive" alt="skill's img">
+                    <img src="images/skills.png" class="img-responsive" alt="skill's img">
                 </a>
             </div>
             <div class="col-sm-4">
                 <a href="#">
                     <div class="caption"></div>
-                    <img src="work.png" class="img-responsive" alt="work's img">
+                    <img src="images/work.png" class="img-responsive" alt="work's img">
                 </a>
             </div>
             <div class="col-sm-4">
                 <a href="#">
                     <div class="caption"></div>
-                    <img src="Projects.png" class="img-responsive" alt="">
+                    <img src="images/Projects.png" class="img-responsive" alt="">
                 </a>
             </div>
         </div>
     </section>
-    
+
     <section id="about">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>About</h2>
-                    <hr class="star-black">
+                    <h1>About</h1>
+                    <hr class="star-light">
                 </div>
             </div>
             <div class="row">
@@ -128,38 +161,80 @@
                             </tr>
                         </tbody>
                     </table>
-                </div> <!-- COL-MD-4 -->
+                </div>
+                <!-- COL-MD-4 -->
                 <!-- DIV 3: DOWNLOAD CV -->
-                
-               
-            </div> <!-- ROW -->
-        </div> <!-- CONTAINER --> 
+
+
+            </div>
+            <!-- ROW -->
+        </div>
+        <!-- CONTAINER -->
     </section>
-    
+
     <section id="contact">
         <div class="container">
             <div class="col-lg-12 text-center">
-                <h2>Contact me</h2>
+                <h1>Contact me</h1>
                 <hr class="star-black">
                 <form action="contact.php" method="post">
                     <div class="row col-lg-12"><input type="text" placeholder="Your Name"></div>
                     <div class="row col-lg-12"><input type="email" placeholder="Your Email Address"></div>
                     <div class="row col-lg-12"><input type="text" placeholder="Your Phone Number (Optional)"></div>
                     <div class="row col-lg-12"><input class="message" type="text" placeholder="Message"></div>
-                    <div class="row col-lg-12"><input class="sub" type="submit"></div>
+                    <div class="row col-lg-12"><input class="sub" type="submit" value="Send"></div>
                 </form>
             </div>
         </div>
     </section>
-    
+
     <footer>
-        <div class="container">
-            <div class="col-lg-12 text-center">
-                <h2>Contact Information</h2>
-                <p><a style="font-size:1.2em;color:#0000ff;" href="https://www.facebook.com/lunvjp">LunVjp</a> © 2017</p>
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-item col-sm-4 col-xs-12">
+                        <h3>About this website</h3>
+                        <p>I build this website with Bootstrap, Jquery.</p>
+                    </div>
+                    <div class="footer-item col-sm-4 col-xs-12">
+                        <!-- DIV 3 -->
+                        <img class="logo img-responsive" src="images/logo.png">
+                    </div>
+                    <div class="footer-item col-sm-4 col-xs-12">
+                        <h3>Contact Information</h3>
+                        <ul>
+                            <li><a href="https://www.facebook.com/lunvjp" class="icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                            <li>
+                                <div id="SkypeButton_Call_momabz6_1">
+                                    <script type="text/javascript">
+                                        Skype.ui({
+                                            "name": "chat",
+                                            "element": "SkypeButton_Call_momabz6_1",
+                                            "participants": ["momabz6"],
+                                            "imageSize": 32
+                                        });
+                                    </script>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <p>Copyright © 2017</p>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script src="animate.js" rel="stylesheet"></script>
+
 
 </body>
 
