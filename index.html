@@ -178,28 +178,35 @@
                 <h1>Contact me</h1>
                 <hr class="star-black">
                 <form action="contact.php" method="post">
-                    <div class="row">
+                    <div class="row form-group">
                         <div class="col-lg-12">
-                            <input type="text" placeholder="Your Name"></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <input type="email" placeholder="Your Email Address">
+                            <input class="form-control" type="text" placeholder="Your Name">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row form-group">
                         <div class="col-lg-12">
-                            <input type="text" placeholder="Your Phone Number (Optional)">
+                            <input class="form-control" type="email" placeholder="Your Email Address">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row form-group">
                         <div class="col-lg-12">
-                            <input class="message" type="text" placeholder="Message">
+                            <input class="form-control" type="text" placeholder="Your Phone Number (Optional)">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row form-group">
                         <div class="col-lg-12">
-                            <input class="sub" type="submit" value="Send"></div>
+                            <textarea rows="3" class="form-control" placeholder="Message"></textarea>        
+                        
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-12">
+                            <button type="submit" class="sub btn btn-primary">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                <span style="margin-left:4px;">Send
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
