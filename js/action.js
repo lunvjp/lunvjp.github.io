@@ -1,4 +1,12 @@
 var dem = 0;
+var days = 3650;
+
+function daysLimit(days) {
+    var day = new Date();
+    day.setTime(day.getTime() + (days * 24 * 60 * 60 * 1000));
+    var expires = day.toUTCString();
+    return expires;
+}
 
 function KiemTraTaiKhoan(id, pass) {
     var check = 3;
@@ -37,28 +45,21 @@ function checkAcount() {
     var pass = $("#login-password").val();
 
     /* Check Here */
-    var check = KiemTraTaiKhoan(id,pass);
+    var check = KiemTraTaiKhoan(id, pass);
     if (check === 1) {
         alert("Accepted");
         return true;
-        
-        
+
+
     } else if (check === 2) {
-        alert("Wrong password!");return false;
+        alert("Wrong password!");
+        return false;
     } else {
-        alert("Account doesn't exist!");return false;
+        alert("Account doesn't exist!");
+        return false;
     }
 }
 
-/* Hàm tạo thời gian cho cookie */
-    /* function loginAcount(id,pass,days) {
-        
-        var day = new Date();
-        day.setTime(today.getTime()+(days*24*60*60*1000));
-        var expires=day.toUTCString;
-
-        document.cookie=id+"="+pass+","+"Expires:="+expires;
-    */
 function createAccount() {
     var firstName = $("#firstname").val();
     var lastName = $("#lastname").val();
@@ -80,12 +81,12 @@ function createAccount() {
     } else if (pass !== confirm) {
         alert("Xác nhận mật khẩu không đúng");
     } else {
-        if (KiemTraTaiKhoan(email,pass) !== 3) {
+        if (KiemTraTaiKhoan(email, pass) !== 3) {
             alert("That username is taken. Try another.");
         } else {
             dem++;
             var phu = dem.toString();
-            document.cookie = "Account" + phu + "=" + "firstName: " + firstName + ",lastName: " + lastName + ",email: " + email + ",pass: " + pass + ",phone: " + phone;
+            document.cookie = "Account" + phu + "=" + "firstName: " + firstName + ",lastName: " + lastName + ",email: " + email + ",pass: " + pass + ",phone: " + phone + ";expires=" + daysLimit(days);
             alert("Sign in succesfully");
         }
     }
