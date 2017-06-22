@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Create your Account</title>
     <meta charset="utf-8">
@@ -13,6 +14,52 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+    <style>
+        #dialogoverlay {
+            display: none;
+            opacity: .8;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background: #FFF;
+            width: 100%;
+            z-index: 2;
+        }
+        
+        #dialogbox {
+            display: none;
+            position: fixed;
+            background: #000;
+            border-radius: 7px;
+            width: 550px;
+            z-index: 2;
+        }
+        
+        #dialogbox>div {
+            background: #FFF;
+            margin: 8px;
+        }
+        
+        #dialogbox>div>#dialogboxhead {
+            background: #666;
+            font-size: 19px;
+            padding: 10px;
+            color: #CCC;
+        }
+        
+        #dialogbox>div>#dialogboxbody {
+            background: #333;
+            padding: 20px;
+            color: #FFF;
+        }
+        
+        #dialogbox>div>#dialogboxfoot {
+            background: #666;
+            padding: 10px;
+            text-align: right;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -38,10 +85,10 @@
                             <input class="form-control" type="email" name="email" id="email" placeholder="Email">
                         </div>
                         <div class="row form-group">
-                            <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+                            <input class="form-control" type="password" name="password" id="password" placeholder="Password" onchange="checkPassword()" onfocus="checkNote()">
                         </div>
                         <div class="row form-group">
-                            <input class="form-control" type="password" name="confirm" id="confirm" placeholder="Confirm Password">
+                            <input class="form-control" type="password" name="confirm" id="confirm" placeholder="Confirm Password" onchange="checkConfirm()">
                         </div>
                         <div class="row form-group">
                             <input class="form-control" type="number" name="phone" id="phone" placeholder="Phone">
@@ -52,7 +99,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -63,7 +109,7 @@
     <div class="login-scene">
         <div class="login-container">
             <span class="close" onclick="closeLogin()"><i class="fa fa-times" aria-hidden="true"></i></span>
-            <form action="profile.html" id="login-form" onsubmit="return checkAcount()" method="post">
+            <form id="login-form" method="post">
                 <div class="avatar">
                     <img src="images/vodanh.jpg">
                 </div>
@@ -74,14 +120,75 @@
                     <input type="password" name="password" id="login-password" placeholder="Password">
                 </div>
                 <div class="row">
-                    <button class="btn btn-primary" type="submit">LOG IN
-                </button>
+                    <button class="btn btn-info" type="button" onclick="checkAcount()">LOG IN
+                    </button>
                 </div>
+                <div class="row">
+                    <div class="fb-button">
+                        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+                    </div>
+                </div>
+                <button onclick="alert('You look very pretty today.')">Default Alert</button>
+                <button onclick="Alert.render('You look very pretty today.')">Custom Alert</button>
+                <button onclick="Alert.render('And you also smell very nice.')">Custom Alert 2</button>
             </form>
         </div>
     </div>
+
+    <button type="button" class="hidden" id="alert-btn" data-toggle="modal" data-target="#myNotification"></button>
+    <div class="modal fade" id="myNotification" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title">Notifications</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="noti-text"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dialogoverlay"></div>
+    <div id="dialogbox">
+        <div>
+            <div id="dialogboxhead">Header</div>
+            <div id="dialogboxbody">Body</div>
+            <div id="dialogboxfoot">Footer</div>
+        </div>
+    </div>
+
+    <script>
+        function CustomAlert() {
+            this.render = function(dialog) {
+                var winW = window.innerWidth;
+                var winH = window.innerHeight;
+                var dialogoverlay = document.getElementById('dialogoverlay');
+                var dialogbox = document.getElementById('dialogbox');
+                dialogoverlay.style.display = "block";
+                dialogoverlay.style.height = winH + "px";
+                dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
+                dialogbox.style.top = "100px";
+                dialogbox.style.display = "block";
+                document.getElementById('dialogboxhead').innerHTML = "Acknowledge This Message";
+                document.getElementById('dialogboxbody').innerHTML = dialog;
+                document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+            }
+            this.ok = function() {
+                //document.getElementById('dialogbox').style.display = "none";
+                //document.getElementById('dialogoverlay').style.display = "none";
+            }
+        }
+        var Alert = new CustomAlert();
+    </script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/action.js"></script>
+    <script src="js/facebook.js"></script>
 </body>
 </html>
