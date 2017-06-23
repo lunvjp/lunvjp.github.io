@@ -10,56 +10,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="css/register-style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/register-style.css" rel="stylesheet" type="text/css">
 
-    <style>
-        #dialogoverlay {
-            display: none;
-            opacity: .8;
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            background: #FFF;
-            width: 100%;
-            z-index: 2;
-        }
-        
-        #dialogbox {
-            display: none;
-            position: fixed;
-            background: #000;
-            border-radius: 7px;
-            width: 550px;
-            z-index: 2;
-        }
-        
-        #dialogbox>div {
-            background: #FFF;
-            margin: 8px;
-        }
-        
-        #dialogbox>div>#dialogboxhead {
-            background: #666;
-            font-size: 19px;
-            padding: 10px;
-            color: #CCC;
-        }
-        
-        #dialogbox>div>#dialogboxbody {
-            background: #333;
-            padding: 20px;
-            color: #FFF;
-        }
-        
-        #dialogbox>div>#dialogboxfoot {
-            background: #666;
-            padding: 10px;
-            text-align: right;
-        }
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    </style>
+  ga('create', 'UA-101484659-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </head>
 
 <body>
@@ -109,7 +73,7 @@
     <div class="login-scene">
         <div class="login-container">
             <span class="close" onclick="closeLogin()"><i class="fa fa-times" aria-hidden="true"></i></span>
-            <form id="login-form" method="post">
+            <form action="profile.html" class="animate" id="login-form" method="post">
                 <div class="avatar">
                     <img src="images/vodanh.jpg">
                 </div>
@@ -128,67 +92,31 @@
                         <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
                     </div>
                 </div>
-                <button onclick="alert('You look very pretty today.')">Default Alert</button>
-                <button onclick="Alert.render('You look very pretty today.')">Custom Alert</button>
-                <button onclick="Alert.render('And you also smell very nice.')">Custom Alert 2</button>
             </form>
         </div>
     </div>
 
-    <button type="button" class="hidden" id="alert-btn" data-toggle="modal" data-target="#myNotification"></button>
-    <div class="modal fade" id="myNotification" role="dialog">
-        <div class="modal-dialog modal-sm">
+    <div id="myModal" role="dialog">
+        <div id="myDialog" class="animate">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" onclick="turnOffAlert()">&times;
+                    </button>
                     <h5 class="modal-title">Notifications</h5>
                 </div>
                 <div class="modal-body">
                     <p id="noti-text"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-info" onclick="turnOffAlert()">OK</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <div id="dialogoverlay"></div>
-    <div id="dialogbox">
-        <div>
-            <div id="dialogboxhead">Header</div>
-            <div id="dialogboxbody">Body</div>
-            <div id="dialogboxfoot">Footer</div>
-        </div>
-    </div>
-
-    <script>
-        function CustomAlert() {
-            this.render = function(dialog) {
-                var winW = window.innerWidth;
-                var winH = window.innerHeight;
-                var dialogoverlay = document.getElementById('dialogoverlay');
-                var dialogbox = document.getElementById('dialogbox');
-                dialogoverlay.style.display = "block";
-                dialogoverlay.style.height = winH + "px";
-                dialogbox.style.left = (winW / 2) - (550 * .5) + "px";
-                dialogbox.style.top = "100px";
-                dialogbox.style.display = "block";
-                document.getElementById('dialogboxhead').innerHTML = "Acknowledge This Message";
-                document.getElementById('dialogboxbody').innerHTML = dialog;
-                document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
-            }
-            this.ok = function() {
-                //document.getElementById('dialogbox').style.display = "none";
-                //document.getElementById('dialogoverlay').style.display = "none";
-            }
-        }
-        var Alert = new CustomAlert();
-    </script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/action.js"></script>
     <script src="js/facebook.js"></script>
 </body>
+
 </html>

@@ -1,13 +1,27 @@
 var cookieIndex;
 var days = 3650;
 
-function myAlert(t) {
-    $("#noti-text").text(t);
-    //alert("clienwidth=" + document.body.clientWidth);
-    //alert("width=" + screen.width);
-    //$("#alert-btn").click();
-    //alert("clientheight=" + document.body.clientHeight);
-    //alert("height=" + screen.height);
+var modal = document.getElementById('myModal');
+
+function Alert(dialog) {
+    $("#noti-text").text(dialog);
+    var width = document.body.clientWidth;
+    var height = document.body.width;
+    var dialogbox = document.getElementById('myDialog');
+    modal.style.display = "block";
+    modal.style.height = height + "px";
+    dialogbox.style.left = (width / 2) - (400 * .5) + "px";
+}
+
+function turnOffAlert() {
+    modal.style.display = "none";
+}
+
+// modal will close when people click outside of modal
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 function daysLimit(days) {
@@ -83,17 +97,15 @@ function checkAcount() {
     /* Check Here */
     var check = checkCookie(id, pass);
     if (check === 1) {
-        alert("Accepted");
-        myAlert("Accepted");
+        //alert("Accepted");
+        Alert("Accepted");
         $("#login-form").submit();
-        //return true;
     } else if (check === 2) {
-        alert("Wrong password!");
-        //return false;
+        //alert("Wrong password!");
+        Alert("Wrong password");
     } else {
-        alert("Account doesn't exist!");
-        myAlert("Account doesn't exist!");
-        //return false;
+        //alert("Account doesn't exist!");
+        Alert("Account doesn't exist!");
     }
 }
 
@@ -108,8 +120,7 @@ function checkNote() {
 }
 
 function note() {
-    alert("Available password is that:\n" +
-        "- Password must be at least 8 characters, 1 number, 1 special character.\n" +
+    Alert("Available password is that:"+'\n'+"- Password must be at least 8 characters, 1 number, 1 special character.\n" +
         "- Password can't start with a number.\n" +
         "- Password can't have * character, html tags, spaces, tabs");
     clickNote++;
@@ -118,10 +129,10 @@ function note() {
 function checkPassword() {
     var pass = $("#password").val();
     if (pass.length < 8) { //minilength
-        alert("Password must be at least 8 characters");
+        Alert("Password must be at least 8 characters");
         checkAll = 1;
     } else if (isNaN(Number(pass[0])) == false) {
-        alert("Password can't start with a number");
+        Alert("Password can't start with a number");
         checkAll = 1;
     } else {
         var list = "@~`!#$%^&+=-[]\\\';,/{}|\":<>? ";
@@ -134,7 +145,7 @@ function checkPassword() {
                 specialCharacterCount++;
             }
             if (pass[i] == "*") {
-                alert("Password can't have * character");
+                Alert("Password can't have * character");
                 check = false; //have *
                 checkAll = 1;
                 break;
@@ -143,10 +154,10 @@ function checkPassword() {
         }
         if (check == true) {
             if (specialCharacterCount == 0) {
-                alert("Password must be at last 1 special character");
+                Alert("Password must be at last 1 special character");
                 checkAll = 1;
             } else if (numberCount == 0) {
-                alert("Password must be at least 1 number");
+                Alert("Password must be at least 1 number");
                 checkAll = 1;
             }
         }
@@ -158,7 +169,7 @@ function checkConfirm() {
     var confirm = $("#confirm").val();
     if (confirm.length > 0) {
         if (pass !== confirm) {
-            alert("Confirm password wrong");
+            Alert("Confirm password wrong");
             checkAll = 2;
         }
     }
@@ -173,22 +184,20 @@ function createAccount() {
     var phone = $("#phone").val();
 
     if (firstName === "") {
-        alert("You have not entered the first name");
+        Alert("You have not entered the first name");
     } else if (lastName === "") {
-        alert("You have not entered your last name");
+        Alert("You have not entered your last name");
     } else if (email === "") {
-        alert("You have not entered the email");
+        Alert("You have not entered the email");
     } else if (pass === "") {
-        alert("You have not entered the password");
+        Alert("You have not entered the password");
     } else if (confirm === "") {
-        alert("You have not confimed the password");
-    } else if (pass !== confirm) {
-        alert("Confirm password wrong");
+        Alert("You have not confimed the password");
     } else if (phone === "") {
-        alert("You have not entered the phone");
+        Alert("You have not entered the phone");
     } else {
         if (checkCookie(email, pass) !== 3) {
-            alert("That username is taken. Try another.");
+            Alert("That username is taken. Try another.");
         } else {
             checkAll = 0;
             checkConfirm();
@@ -196,14 +205,14 @@ function createAccount() {
             if (checkAll === 1) {
                 //note();
             } else if (checkAll === 2) {
-                alert("Confirm password wrong");
+                Alert("Confirm password wrong");
             } else {
                 reLoad();
                 cookieIndex++;
                 makeCookie(cookieIndex);
                 var phu = cookieIndex.toString();
                 document.cookie = "Account" + phu + "=" + "firstName: " + firstName + ",lastName: " + lastName + ",email: " + email + ",pass: " + pass + ",phone: " + phone + ";expires=" + daysLimit(days) + ";domain=.lunvjp.tk;path=/";
-                alert("Sign in succesfully");
+                Alert("Sign in succesfully");
             }
         }
     }
