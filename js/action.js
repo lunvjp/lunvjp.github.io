@@ -7,7 +7,7 @@ function Alert(dialog) {
     $("#noti-text").text(dialog);
     var width = document.body.clientWidth;
     var height = document.body.width;
-    var dialogbox = document.getElementById('myDialog');
+    var dialogbox = document.getElementById("myDialog");
     modal.style.display = "block";
     modal.style.height = height + "px";
     dialogbox.style.left = (width / 2) - (400 * .5) + "px";
@@ -20,6 +20,12 @@ function turnOffAlert() {
 // modal will close when people click outside of modal
 window.onclick = function (event) {
     if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+window.onkeyup = function (event) {
+    if (event.keyCode === 27 || event.keyCode === 13) {
         modal.style.display = "none";
     }
 }
@@ -41,7 +47,7 @@ function IndexOfItem() {
     var accountList = cookies.split("; ");
 
     var index;
-    for (var i = 0; i <= accountList.length; i++) {
+    for (var i = 0; i < accountList.length; i++) {
         index = accountList[i].split("=");
         if (index[0] === "AccountNumbers") {
             return index[1];
@@ -50,7 +56,19 @@ function IndexOfItem() {
 }
 
 function reLoad() {
-    if (document.cookie.length === 0) {
+    var cookies = document.cookie;
+    var cookieItem = cookies.split("; ");
+    var checkCount = false;
+    var item;
+    for (var i = 0; i < cookieItem.length; i++) {
+        item = cookieItem[i].split("=");
+        if (item[0] === "AccountNumbers") {
+            checkCount = true;
+            break;
+        }
+    }
+
+    if (checkCount === false) {
         makeCookie(0);
         cookieIndex = 0;
     } else {
@@ -90,22 +108,27 @@ function checkCookie(id, pass) {
 }
 
 function checkAcount() {
-    reLoad();
     var id = $("#id").val();
     var pass = $("#login-password").val();
-
-    /* Check Here */
-    var check = checkCookie(id, pass);
-    if (check === 1) {
-        //alert("Accepted");
-        Alert("Accepted");
-        $("#login-form").submit();
-    } else if (check === 2) {
-        //alert("Wrong password!");
-        Alert("Wrong password");
+    if (id === "") {
+        Alert("You have not entered the email");
+    } else if (pass === "") {
+        Alert("You have not entered the password");
     } else {
-        //alert("Account doesn't exist!");
-        Alert("Account doesn't exist!");
+        /* Check Here */
+        reLoad();
+        var check = checkCookie(id, pass);
+        if (check === 1) {
+            //alert("Accepted");
+            Alert("Accepted");
+            $("#login-form").submit();
+        } else if (check === 2) {
+            //alert("Wrong password!");
+            Alert("Wrong password");
+        } else {
+            //alert("Account doesn't exist!");
+            Alert("Account doesn't exist!");
+        }
     }
 }
 
@@ -120,7 +143,7 @@ function checkNote() {
 }
 
 function note() {
-    Alert("Available password is that:"+'\n'+"- Password must be at least 8 characters, 1 number, 1 special character.\n" +
+    Alert("Available password is that:" + '\n' + "- Password must be at least 8 characters, 1 number, 1 special character.\n" +
         "- Password can't start with a number.\n" +
         "- Password can't have * character, html tags, spaces, tabs");
     clickNote++;

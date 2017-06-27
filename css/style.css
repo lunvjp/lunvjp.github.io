@@ -20,7 +20,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 header {
-    background:url("../images/bg-default.jpg") no-repeat center center;
+    background:url("https://lunvjp.github.io/images/bg-default.jpg") no-repeat center center;
     background-size:100% 100%;
     min-height:600px;
 }
